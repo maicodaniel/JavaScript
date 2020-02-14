@@ -59,5 +59,38 @@ router.post('/admin/addUsuarios/novo',(req,res) => {
     
 })
 
+router.get('/admin/editarUsuarios/:id',(req,res) => {
+    Usuario.findOne({
+        _id: req.params.id
+    })
+    .lean()
+    .then((usuario) => {
+        res.render("admin/editarUsuario", {usuario: usuario})
+    }).catch((err) => {
+        req.flash("error_msg", "Cadastro não encontrado")
+    })
+})
+
+router.post('/admin/editarUsuarios/novo',(req,res) => {
+    Usuario.findOne({
+        _id: req.body.id
+    })
+    
+    .then((usuario) => {
+        usuario.nome = req.body.nome;
+        usuario.email = req.body.email;
+        usuario.save().then(() => {
+            req.flash("success_msg", "Editado com sucesso!!!");
+            res.redirect("/admin/listaUsuarios");
+        }).catch((err) => {
+            req.flash("error_msg","Erro ao salvar o usuario " + err )
+            res.redirect("/admin/listaUsuarios");
+        })
+    }).catch((err) => {
+        req.flash("error_msg", "Erro ao editar o usuario")
+        res.redirect("/admin/listaUsuarios");
+    })
+})
+
 
 module.exports = router;
