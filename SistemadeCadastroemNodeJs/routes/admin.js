@@ -1,11 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-require("../models/Usuarios")
+require("../models/Usuarios");
 const Usuario = mongoose.model("usuarios");
+const moment = require("moment");
 
-router.get('/', (req,res) => {
-    res.render("admin/index")
+router.get('/admin', (req,res) => {
+    /*let data = new Date();
+    let dia = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"][data.getDay()];
+    let hoje = data.getDay() + '/' + data.getMonth
+    let mes = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"][data.getMonth()];
+    */
+    moment.locale('pt');
+    let hoje = moment().format('LLLL');
+    res.render("admin/index", {hj: hoje})
 })
 
 router.get("/admin/listaUsuarios", (req, res, next) => {
@@ -53,10 +61,6 @@ router.post('/admin/addUsuarios/novo',(req,res) => {
             
         })
     }
-
-    
-
-    
 })
 
 router.get('/admin/editarUsuarios/:id',(req,res) => {
@@ -88,8 +92,16 @@ router.post('/admin/editarUsuarios/novo',(req,res) => {
         })
     }).catch((err) => {
         req.flash("error_msg", "Erro ao editar o usuario")
-        res.redirect("/admin/listaUsuarios");
+        res.redirect("admin/listaUsuarios");
     })
+})
+
+router.get("/admin/deletarUsuario/:id", (req,res) => {
+    Usuario.remove({_id: req.params.id})
+    .then(() => {
+        req.flash("success_msg", "Deletado com sucesso!!!");
+        res.redirect("/admin/listaUsuarios");
+})
 })
 
 
