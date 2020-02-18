@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const admin = require("./routes/admin");
 const path = require("path");
-const porta = 3000;
+const porta = normalizePort(process.env.PORT || '3000');
 const mongoose = require("mongoose");
 const session = require("express-session");
 const flash = require("connect-flash");
@@ -43,6 +43,18 @@ const flash = require("connect-flash");
 app.use("/", admin)
 
 // Outros
+
+function normalizePort(val){
+    const port =parseInt(val, 10);
+
+    if (isNaN(port)) {
+        return val;
+    }
+    if (port >= 0) {
+        return port
+    }
+    return false;
+}
 
 app.listen(porta, () => {
     console.log("Servidor on")
