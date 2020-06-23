@@ -1,3 +1,3 @@
 # JavaScript
 Projetos em JavaScript
-Criacao de um sistema de crud simples em nodejs
+Conversor monetario simples utilizando Vue.JS(consumindo a API http://economia.awesomeapi.com.br)
