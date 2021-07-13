@@ -1,6 +1,6 @@
 <template>
     <div class='conversor'>
-        <h2>{{m1}} Para {{m2}}</h2>
+        <h2>{{m1}} <img src="https://img.icons8.com/small/16/000000/long-arrow-right.png"/> {{m2}}</h2>
         <input type="text" v-model="m1_value" v-bind:placeholder="m1">
         <input type="button" value="Converter" v-on:click="converter">
         <h2>{{m2_value}}</h2>
@@ -22,6 +22,7 @@ export default {
 
             let val1 = this.m1;
             let val2 = this.m2;
+
             if (this.m2 != "BRL") {
                 val1 = this.m2;
                 val2= "BRL"
@@ -37,19 +38,12 @@ export default {
                 return res.json();
                 })
             .then(json=> {
-                console.log(json[0]);
-                console.log(de_para);
                 let cotacao = json[0].bid;
-                console.log(cotacao);
-                
                 if (this.m2 == "BRL") {
                      this.m2_value = (cotacao * parseFloat(this.m1_value)).toFixed(2);
                 } else {
                      this.m2_value = (parseFloat(this.m1_value) / cotacao).toFixed(2);
                 }
-                console.log(this.m2_value);
-               
-
             })
         }
     }

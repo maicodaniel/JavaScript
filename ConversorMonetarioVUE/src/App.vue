@@ -1,6 +1,12 @@
 <template>
   <div id="app">
     <div class="line">
+      <h1>Bem Vindo</h1>
+    </div>
+    <div>
+       <p>BRL = Real, USD = Dolar Americano,  CAD = Dolar Canadense,  GBP = Libra,  BTC = BitCoin</p>
+    </div>
+    <div class="line">
       <Conversor m1="USD" m2="BRL"/>
       <Conversor m1="BRL" m2="USD"/>
     </div>
@@ -12,8 +18,13 @@
       <Conversor m1="GBP" m2="BRL"/>
       <Conversor m1="BRL" m2="GBP"/>
     </div>
-    
-    
+     <div class="line">
+      <Conversor m1="BTC" m2="BRL"/>
+      <Conversor m1="BRL" m2="BTC"/>
+    </div>
+    <div>
+      <a href="https://icons8.com/icon/45300/seta-longa-à-direita">Seta longa à direita icon by Icons8</a>
+    </div>
   </div>
 </template>
 
