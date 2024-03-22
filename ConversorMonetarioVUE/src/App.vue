@@ -4,7 +4,7 @@
       <h1>Bem Vindo</h1>
     </div>
     <div>
-       <p>BRL = Real, USD = Dolar Americano,  CAD = Dolar Canadense,  GBP = Libra,  BTC = BitCoin</p>
+       <p>BRL = Real, USD = Dolar Americano,  CAD = Dolar Canadense,  GBP = Libra,  BTC = BitCoin, ETH = Ethereum</p>
     </div>
     <div class="line">
       <Conversor m1="USD" m2="BRL"/>
@@ -21,6 +21,10 @@
      <div class="line">
       <Conversor m1="BTC" m2="BRL"/>
       <Conversor m1="BRL" m2="BTC"/>
+    </div>
+    <div class="line">
+      <Conversor m1="ETH" m2="BRL"/>
+      <Conversor m1="BRL" m2="ETH"/>
     </div>
     <div>
       <a href="https://icons8.com/icon/45300/seta-longa-à-direita">Seta longa à direita icon by Icons8</a>
@@ -48,6 +52,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  flex-direction: column;
 }
 .line {
   display: flex;
